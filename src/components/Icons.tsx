@@ -1,0 +1,48 @@
+// centralized icons
+import {
+  Mail, Lock, User as UserIcon, Loader2, ArrowRight, CheckCircle2,
+  Filter, ChevronDown, Check, X, Search,
+  ShoppingCart, Star, Box, Cpu, HardDrive, ChevronRight,
+  Zap, ShieldCheck, Gauge, MapPin, CreditCard, Trash2,
+  Menu, LogOut,
+  Facebook, Twitter, Instagram, Youtube,
+  Package, Calendar, Truck,
+  Eye, EyeOff
+} from 'lucide-react';
+
+export const Icons = {
+  Mail, 
+  Lock, 
+  User: UserIcon, 
+  Loader2, 
+  ArrowRight, 
+  CheckCircle2,
+  Filter, 
+  ChevronDown, 
+  Check, 
+  X, 
+  Search,
+  ShoppingCart, 
+  Star, 
+  Box, 
+  Cpu, 
+  HardDrive, 
+  ChevronRight,
+  Zap, 
+  ShieldCheck, 
+  Gauge, 
+  MapPin, 
+  CreditCard, 
+  Trash2,
+  Menu, 
+  LogOut,
+  Facebook, 
+  Twitter, 
+  Instagram, 
+  Youtube,
+  Package,
+  Calendar,
+  Truck,
+  Eye,
+  EyeOff
+};

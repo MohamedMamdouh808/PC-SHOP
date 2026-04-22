@@ -1,0 +1,169 @@
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;400;500;600;700&family=Russo+One&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-brand-primary: #7C3AED;
+  --color-brand-secondary: #A78BFA;
+  --color-brand-dark: #1C1917;
+  --color-accent: #CA8A04;
+  --color-cta: #F43F5E;
+  --color-surface-base: #0C0A09;
+  --color-surface-elevated: #1C1917;
+  --color-surface-glass: rgba(124, 58, 237, 0.08);
+  --color-surface-glass-dark: rgba(12, 10, 9, 0.8);
+  
+  --font-sans: 'Chakra Petch', system-ui, sans-serif;
+  --font-heading: 'Russo One', system-ui, sans-serif;
+
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.1);
+  --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.2), 0 2px 4px -1px rgba(0,0,0,0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.3), 0 4px 6px -2px rgba(0,0,0,0.1);
+  --shadow-xl: 0 20px 25px -5px rgba(0,0,0,0.4), 0 10px 10px -5px rgba(0,0,0,0.2);
+}
+
+/* Base Styles */
+@layer base {
+  body {
+    background-color: var(--color-surface-base);
+    color: theme("colors.stone.300");
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    color: white;
+    letter-spacing: 0.025em;
+  }
+}
+
+/* Custom Utilities and Components */
+@layer utilities {
+  .glass {
+    background-color: var(--color-surface-glass);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .glass-dark {
+    background-color: var(--color-surface-glass-dark);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+  }
+
+  .text-gradient-gold {
+    background: linear-gradient(135deg, #CA8A04 0%, #EAB308 50%, #CA8A04 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-gradient-neon {
+    background: linear-gradient(135deg, #7C3AED 0%, #A78BFA 50%, #F43F5E 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-gradient {
+    background: linear-gradient(135deg, #7C3AED 0%, #A78BFA 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .glow-purple {
+    box-shadow: 0 0 30px rgba(124, 58, 237, 0.3);
+  }
+
+  .glow-accent {
+    box-shadow: 0 0 30px rgba(202, 138, 4, 0.3);
+  }
+
+  .btn-cta {
+    background: linear-gradient(135deg, #F43F5E 0%, #FB7185 100%);
+    color: white;
+    box-shadow: 0 4px 14px 0 rgba(244, 63, 94, 0.39);
+  }
+  .btn-cta:hover {
+    background: linear-gradient(135deg, #FB7185 0%, #F43F5E 100%);
+    box-shadow: 0 6px 20px rgba(244, 63, 94, 0.5);
+    transform: translateY(-2px);
+  }
+
+  .hover-card {
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .hover-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-xl);
+    border-color: rgba(202, 138, 4, 0.3);
+  }
+
+  .btn {
+    width: 100%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    cursor: pointer;
+  }
+  .btn:active {
+    transform: scale(0.95);
+  }
+  .btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .btn-primary {
+    background: var(--color-brand-primary);
+    color: white;
+    box-shadow: 0 4px 14px 0 rgba(124, 58, 237, 0.39);
+  }
+  .btn-primary:hover {
+    background: var(--color-brand-secondary);
+    box-shadow: 0 6px 20px rgba(124, 58, 237, 0.5);
+    transform: translateY(-2px);
+  }
+
+  .input-field {
+    width: 100%;
+    background-color: var(--color-surface-elevated);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 0.75rem;
+    padding: 0.875rem 1.25rem;
+    color: white;
+    outline: none;
+    transition: all 0.3s ease;
+  }
+  .input-field:focus {
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 4px rgba(202, 138, 4, 0.1);
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-surface-base);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-brand-secondary);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent);
+}
