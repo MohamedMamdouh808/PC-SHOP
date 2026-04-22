@@ -7,7 +7,8 @@ import {
   Menu, LogOut,
   Facebook, Twitter, Instagram, Youtube,
   Package, Calendar, Truck,
-  Eye, EyeOff
+  Eye, EyeOff,
+  Plus
 } from 'lucide-react';
 
 export const Icons = {
@@ -44,5 +45,6 @@ export const Icons = {
   Calendar,
   Truck,
   Eye,
-  EyeOff
+  EyeOff,
+  Plus
 };

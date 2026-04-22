@@ -4,7 +4,7 @@ import { Icons } from '../components/Icons';
 import '../styles/pages/LoginPage.css';
 import { useAuth } from '../context/AuthContext';
 import { api } from '../lib/api';
-import { loginSchema } from 'shared';
+import { loginSchema } from '../shared/src/schemas';
 
 export function LoginPage() {
   const [email, setEmail] = useState('');

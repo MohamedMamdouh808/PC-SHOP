@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Icons } from '../components/Icons';
 import '../styles/pages/RegisterPage.css';
 import { api } from '../lib/api';
-import { registerSchema } from 'shared';
+import { registerSchema } from '../shared/src/schemas';
 
 export function RegisterPage() {
   const [formData, setFormData] = useState({
