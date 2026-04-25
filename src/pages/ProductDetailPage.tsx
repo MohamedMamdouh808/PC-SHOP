@@ -81,13 +81,13 @@ export function ProductDetailPage() {
         <div className="space-y-4">
           <div 
             ref={imageRef}
-            className="bg-white/5 rounded-3xl aspect-square flex items-center justify-center p-8 lg:p-12 border border-white/5 relative group overflow-hidden cursor-zoom-in"
+            className="bg-white/5 rounded-2xl md:rounded-3xl aspect-square flex items-center justify-center p-4 md:p-8 lg:p-12 border border-white/5 relative group overflow-hidden lg:cursor-zoom-in"
             onClick={() => setIsZoomed(!isZoomed)}
             onMouseMove={handleMouseMove}
             onMouseLeave={() => setIsZoomed(false)}
           >
             {isLoading ? (
-              <div className="skeleton w-full h-full rounded-2xl" />
+              <div className="skeleton w-full h-full rounded-xl md:rounded-2xl" />
             ) : (
               <img 
                 src={product.images[activeImage]} 
@@ -100,22 +100,27 @@ export function ProductDetailPage() {
               />
             )}
             {product.isNew && (
-              <span className="absolute top-6 left-6 bg-brand-primary text-white text-[10px] font-bold px-3 py-1 rounded-sm uppercase tracking-wider shadow-lg">
+              <span className="absolute top-3 left-3 md:top-6 md:left-6 bg-brand-primary text-white text-[10px] font-bold px-2 md:px-3 py-1 rounded-sm uppercase tracking-wider shadow-lg">
                 New
               </span>
             )}
-            <div className="absolute bottom-4 right-4 bg-black/60 px-3 py-1 rounded-full text-xs text-white/80">
+            {/* Zoom hint - desktop only */}
+            <div className="hidden lg:block absolute bottom-4 right-4 bg-black/60 px-3 py-1 rounded-full text-xs text-white/80">
               Click to {isZoomed ? 'zoom out' : 'zoom'}
+            </div>
+            {/* Mobile hint */}
+            <div className="lg:hidden absolute bottom-3 right-3 bg-black/60 px-2 py-1 rounded-full text-[10px] text-white/70">
+              Tap to expand
             </div>
           </div>
           
           {product.images.length > 1 && (
-            <div className="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-5 gap-3">
+            <div className="flex gap-2 md:gap-3 overflow-x-auto pb-2 scrollbar-hide">
               {product.images.map((img, idx) => (
                 <button 
                   key={idx}
                   onClick={() => setActiveImage(idx)}
-                  className={`aspect-square rounded-xl bg-white/5 border-2 overflow-hidden flex items-center justify-center p-2 transition-all w-full cursor-pointer hover:bg-white/10 ${
+                  className={`flex-shrink-0 w-16 h-16 md:w-20 md:h-20 rounded-lg md:rounded-xl bg-white/5 border-2 overflow-hidden flex items-center justify-center p-1.5 md:p-2 transition-all cursor-pointer hover:bg-white/10 ${
                     activeImage === idx ? "border-brand-primary opacity-100" : "border-transparent opacity-60 hover:opacity-100"
                   }`}
                 >
@@ -243,13 +248,16 @@ export function ProductDetailPage() {
           <h2 className="text-2xl sm:text-3xl font-heading font-bold text-white">Technical Specifications</h2>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-0 border border-white/10 rounded-2xl overflow-hidden bg-surface-elevated/50 backdrop-blur-sm">
-          {Object.entries(product.specs).map(([key, value], idx) => (
-            <div key={key} className={`flex flex-col sm:flex-row border-white/10 ${idx % 2 === 0 ? "bg-white/[0.02]" : "bg-transparent"} ${idx !== Object.entries(product.specs).length - 1 ? "border-b md:border-b-0" : ""}`}>
-              <div className="w-full sm:w-1/3 py-4 px-6 text-slate-400 font-medium text-sm sm:text-base border-b sm:border-b-0 sm:border-r border-white/5">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-px bg-white/10 rounded-xl md:rounded-2xl overflow-hidden">
+          {Object.entries(product.specs).map(([key, value], idx, arr) => (
+            <div 
+              key={key} 
+              className={`flex flex-col sm:flex-row bg-surface-elevated ${idx % 2 === 0 ? "lg:bg-white/[0.02]" : "lg:bg-surface-elevated"}`}
+            >
+              <div className="w-full sm:w-1/3 py-3 md:py-4 px-4 md:px-6 text-slate-400 font-medium text-xs md:text-sm border-b sm:border-b-0 sm:border-r border-white/5">
                 {key}
               </div>
-              <div className="w-full sm:w-2/3 py-4 px-6 text-white font-medium text-sm sm:text-base border-b sm:border-b-0 border-white/5 md:border-b md:last:border-b-0">
+              <div className="w-full sm:w-2/3 py-3 md:py-4 px-4 md:px-6 text-white font-medium text-xs md:text-sm">
                 {value}
               </div>
             </div>

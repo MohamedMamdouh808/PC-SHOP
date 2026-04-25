@@ -6,9 +6,9 @@ export function Footer() {
   return (
     <footer className="bg-[#0C0A09] border-t border-white/5 py-12">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
           {/* Brand */}
-          <div className="space-y-4">
+          <div className="space-y-4 sm:col-span-2 lg:col-span-1">
             <Logo size="md" />
             <p className="text-slate-400 max-w-sm">
               The ultimate destination for premium PC hardware, custom builds, and enthusiast gear.
@@ -54,17 +54,17 @@ export function Footer() {
           </div>
 
           {/* Newsletter */}
-          <div>
+          <div className="sm:col-span-2 lg:col-span-1">
             <h3 className="font-heading font-bold text-lg mb-4 text-white">Stay in the Loop</h3>
             <p className="text-slate-400 mb-4">Subscribe to get special offers, free giveaways, and once-in-a-lifetime deals.</p>
-            <form className="flex gap-2" onSubmit={(e) => e.preventDefault()}>
+            <form className="flex flex-col sm:flex-row gap-2" onSubmit={(e) => e.preventDefault()}>
               <input 
                 type="email" 
                 placeholder="Enter your email" 
-                className="input-field py-2"
+                className="input-field py-2 flex-1"
                 required
               />
-              <button type="submit" className="btn-primary px-4">
+              <button type="submit" className="btn-primary px-4 py-2 whitespace-nowrap">
                 Subscribe
               </button>
             </form>

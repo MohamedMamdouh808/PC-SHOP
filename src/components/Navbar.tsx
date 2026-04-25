@@ -48,15 +48,20 @@ export function Navbar() {
     <>
       <nav className={`fixed left-0 right-0 z-50 transition-all duration-500 ease-in-out ${
         isScrolled 
-          ? 'top-4 mx-4 md:mx-8 lg:mx-12 rounded-2xl glass-dark shadow-2xl py-3 border border-white/10' 
-          : 'top-0 py-6 bg-transparent'
+          ? 'top-2 md:top-4 mx-2 md:mx-8 lg:mx-12 rounded-xl md:rounded-2xl glass-dark shadow-2xl py-2 md:py-3 border border-white/10' 
+          : 'top-0 py-4 md:py-6 bg-transparent'
       }`}>
-        <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-          {/* Logo */}
-          <Logo size="lg" />
+        <div className="max-w-7xl mx-auto px-3 md:px-6 flex items-center justify-between">
+          {/* Logo - Smaller on mobile */}
+          <div className="md:hidden">
+            <Logo size="sm" />
+          </div>
+          <div className="hidden md:block">
+            <Logo size="lg" />
+          </div>
 
-          {/* Desktop Links */}
-          <div className="hidden lg:flex items-center space-x-10 text-xs font-bold uppercase tracking-[0.2em]">
+          {/* Desktop & Tablet Links */}
+          <div className="hidden md:flex items-center space-x-6 lg:space-x-10 text-xs font-bold uppercase tracking-[0.15em] lg:tracking-[0.2em]">
             <Link
               to="/products"
               className={`transition-all duration-300 hover:text-brand-secondary ${isActive('/products') ? 'text-brand-secondary' : 'text-stone-400'}`}
@@ -71,13 +76,13 @@ export function Navbar() {
             </Link>
             <Link
               to="/compare"
-              className={`transition-all duration-300 hover:text-brand-secondary ${isActive('/compare') ? 'text-brand-secondary' : 'text-stone-400'}`}
+              className={`hidden lg:block transition-all duration-300 hover:text-brand-secondary ${isActive('/compare') ? 'text-brand-secondary' : 'text-stone-400'}`}
             >
               Compare
             </Link>
             <Link
               to="/"
-              className="relative text-accent group transition-all hover:text-accent/80"
+              className="hidden lg:block relative text-accent group transition-all hover:text-accent/80"
             >
               <span>Home</span>
               <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-accent group-hover:w-full transition-all duration-300" />
@@ -85,19 +90,29 @@ export function Navbar() {
           </div>
 
           {/* Actions */}
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-2 md:space-x-4">
+            {/* Search - Mobile: icon only, shown inline */}
             <button 
               onClick={() => setIsSearchOpen(true)}
-              className="hidden sm:flex p-2.5 text-stone-400 hover:text-brand-secondary transition-colors cursor-pointer rounded-full hover:bg-brand-primary/10"
+              className="flex md:hidden p-2 text-stone-400 hover:text-brand-secondary transition-colors cursor-pointer rounded-full hover:bg-brand-primary/10"
+              aria-label="Search"
+            >
+              <Icons.Search className="w-5 h-5" />
+            </button>
+            <button 
+              onClick={() => setIsSearchOpen(true)}
+              className="hidden md:flex p-2.5 text-stone-400 hover:text-brand-secondary transition-colors cursor-pointer rounded-full hover:bg-brand-primary/10"
             >
               <Icons.Search className="w-5 h-5" />
             </button>
 
-            {/* Theme Toggle - Available to all */}
-            <ThemeToggle />
+            {/* Theme Toggle - Hidden on mobile (in drawer instead) */}
+            <div className="hidden md:block">
+              <ThemeToggle />
+            </div>
 
             {/* Wishlist - Available to all */}
-            <Link to="/wishlist" className="relative p-2.5 text-stone-400 hover:text-brand-secondary transition-colors rounded-full hover:bg-brand-primary/10">
+            <Link to="/wishlist" className="relative p-2 md:p-2.5 text-stone-400 hover:text-brand-secondary transition-colors rounded-full hover:bg-brand-primary/10">
               <Icons.Heart className="w-5 h-5" />
               {wishlistItems.length > 0 && (
                 <span className="absolute -right-0.5 -top-0.5 bg-red-500 text-[10px] font-black text-white w-4 h-4 flex items-center justify-center rounded-full">
@@ -109,7 +124,7 @@ export function Navbar() {
             {/* Cart - Available to all */}
             <Link 
               to="/cart" 
-              className={`relative p-2.5 transition-colors rounded-full hover:bg-brand-primary/10 ${itemCount > 0 ? 'text-brand-secondary' : 'text-stone-400 hover:text-brand-secondary'} ${cartBounce ? 'cart-icon-bounce' : ''}`}
+              className={`relative p-2 md:p-2.5 transition-colors rounded-full hover:bg-brand-primary/10 ${itemCount > 0 ? 'text-brand-secondary' : 'text-stone-400 hover:text-brand-secondary'} ${cartBounce ? 'cart-icon-bounce' : ''}`}
             >
               <Icons.ShoppingCart className="w-5 h-5" />
               {itemCount > 0 && (
@@ -123,7 +138,7 @@ export function Navbar() {
 
             {/* User Section */}
             {user ? (
-              <div className="hidden sm:flex items-center gap-1">
+              <div className="hidden md:flex items-center gap-1">
                 <Link to="/profile" className={`flex items-center space-x-2 px-3 py-2 rounded-xl transition-all ${isActive('/profile') ? 'bg-brand-primary/20 text-brand-secondary border border-brand-primary/30' : 'text-stone-300 hover:bg-brand-primary/10'}`}>
                   <div className="w-7 h-7 rounded-full bg-brand-primary/30 flex items-center justify-center border border-brand-secondary/30 text-xs font-bold text-brand-secondary">
                     {user.firstName?.charAt(0).toUpperCase()}
@@ -141,17 +156,19 @@ export function Navbar() {
             ) : (
               <Link
                 to="/login"
-                className="hidden lg:flex btn px-5 py-2.5 text-xs font-bold uppercase tracking-wider bg-brand-primary hover:bg-brand-secondary text-white rounded-xl transition-all hover:shadow-[0_0_15px_rgba(124,58,237,0.3)]"
+                className="hidden md:flex lg:flex btn px-5 py-2.5 text-xs font-bold uppercase tracking-wider bg-brand-primary hover:bg-brand-secondary text-white rounded-xl transition-all hover:shadow-[0_0_15px_rgba(124,58,237,0.3)]"
               >
                 Sign In
               </Link>
             )}
 
+            {/* Hamburger Menu - Show on mobile and tablet */}
             <button
-              className="lg:hidden p-2.5 text-stone-300 hover:text-brand-secondary cursor-pointer rounded-full transition-colors hover:bg-brand-primary/10"
+              className="lg:hidden p-2 md:p-2.5 text-stone-300 hover:text-brand-secondary cursor-pointer rounded-full transition-colors hover:bg-brand-primary/10"
               onClick={() => setIsMobileNavOpen(true)}
+              aria-label="Open menu"
             >
-              <Icons.Menu className="w-6 h-6" />
+              <Icons.Menu className="w-5 h-5 md:w-6 md:h-6" />
             </button>
           </div>
         </div>
