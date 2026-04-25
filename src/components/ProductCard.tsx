@@ -2,9 +2,15 @@ import { Link } from "react-router-dom";
 import { Icons } from './Icons';
 import { Product } from "../lib/mockData";
 import { useCart } from "../context/CartContext";
+import { useWishlist } from "../context/WishlistContext";
+import { useCompare } from "../context/CompareContext";
 
 export function ProductCard({ product }: { product: Product }) {
   const { addItem } = useCart();
+  const { addItem: addToWishlist, isInWishlist } = useWishlist();
+  const { addItem: addToCompare, isInCompare } = useCompare();
+  const inWishlist = isInWishlist(product.id);
+  const inCompare = isInCompare(product.id);
 
   return (
     <div className="bg-surface-elevated rounded-2xl border border-white/5 overflow-hidden hover-card flex flex-col h-full group relative hover:border-brand-primary/30 transition-all duration-300">
@@ -21,6 +27,38 @@ export function ProductCard({ product }: { product: Product }) {
           </span>
         )}
       </div>
+
+      {/* Wishlist Button */}
+      <button
+        onClick={(e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          addToWishlist(product);
+        }}
+        className="absolute top-4 right-4 z-10 p-2 rounded-full bg-black/40 hover:bg-black/60 transition-all"
+        title={inWishlist ? "In wishlist" : "Add to wishlist"}
+      >
+        <Icons.Heart 
+          size={18} 
+          className={`transition-colors ${inWishlist ? 'fill-red-500 text-red-500' : 'text-white/80 hover:text-white'}`}
+        />
+      </button>
+
+      {/* Compare Button */}
+      <button
+        onClick={(e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          addToCompare(product);
+        }}
+        className="absolute top-4 right-14 z-10 p-2 rounded-full bg-black/40 hover:bg-black/60 transition-all"
+        title={inCompare ? "In compare list" : "Add to compare"}
+      >
+        <Icons.Cpu 
+          size={18} 
+          className={`transition-colors ${inCompare ? 'fill-brand-primary text-brand-primary' : 'text-white/80 hover:text-white'}`}
+        />
+      </button>
 
       {/* Image */}
       <Link to={`/products/${product.slug}`} className="relative aspect-square overflow-hidden bg-white/5 p-8 flex items-center justify-center">

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { toast } from 'sonner';
 import { Icons } from '../components/Icons';
 import '../styles/pages/LoginPage.css';
 import { useAuth } from '../context/AuthContext';
@@ -32,9 +33,11 @@ export function LoginPage() {
     try {
       const res = await api.post('/auth/login', { email, password });
       login(res.data.accessToken, res.data.user);
+      toast.success('Welcome back!');
       navigate('/');
     } catch (err: any) {
       const message = err.response?.data?.errors?.[0]?.message || 'Login failed. Please check your credentials.';
+      toast.error(message);
       setError(message);
     } finally {
       setLoading(false);

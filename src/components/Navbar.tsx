@@ -4,15 +4,21 @@ import { Icons } from './Icons';
 import { Logo } from './Logo';
 import { useAuth } from '../context/AuthContext';
 import { useCart } from '../context/CartContext';
+import { useWishlist } from '../context/WishlistContext';
+import { ThemeToggle } from './ThemeToggle';
 import { MobileNav } from './MobileNav';
+import { SearchAutocomplete } from './SearchAutocomplete';
 
 export function Navbar() {
   const { user, logout } = useAuth();
   const { itemCount } = useCart();
+  const { items: wishlistItems } = useWishlist();
   const navigate = useNavigate();
   const location = useLocation();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
+  const [cartBounce, setCartBounce] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -21,6 +27,15 @@ export function Navbar() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Trigger cart bounce animation when itemCount changes
+  useEffect(() => {
+    if (itemCount > 0) {
+      setCartBounce(true);
+      const timer = setTimeout(() => setCartBounce(false), 300);
+      return () => clearTimeout(timer);
+    }
+  }, [itemCount]);
 
   const handleLogout = async () => {
     await logout();
@@ -49,41 +64,52 @@ export function Navbar() {
               Hardware
             </Link>
             <Link
-              to="/products?category=Graphics+Cards"
-              className="text-stone-400 hover:text-brand-secondary transition-all duration-300"
-            >
-              GPUs
-            </Link>
-            <Link
-              to="/products?category=Processors"
-              className="text-stone-400 hover:text-brand-secondary transition-all duration-300"
-            >
-              CPUs
-            </Link>
-            <Link
               to="/pc-builder"
               className={`transition-all duration-300 hover:text-brand-secondary ${isActive('/pc-builder') ? 'text-brand-secondary' : 'text-stone-400'}`}
             >
               PC Builder
             </Link>
             <Link
-              to="/deals"
+              to="/compare"
+              className={`transition-all duration-300 hover:text-brand-secondary ${isActive('/compare') ? 'text-brand-secondary' : 'text-stone-400'}`}
+            >
+              Compare
+            </Link>
+            <Link
+              to="/"
               className="relative text-accent group transition-all hover:text-accent/80"
             >
-              <span>Elite Deals</span>
+              <span>Home</span>
               <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-accent group-hover:w-full transition-all duration-300" />
             </Link>
           </div>
 
           {/* Actions */}
           <div className="flex items-center space-x-4">
-            <button className="hidden sm:flex p-2.5 text-stone-400 hover:text-brand-secondary transition-colors cursor-pointer rounded-full hover:bg-brand-primary/10">
+            <button 
+              onClick={() => setIsSearchOpen(true)}
+              className="hidden sm:flex p-2.5 text-stone-400 hover:text-brand-secondary transition-colors cursor-pointer rounded-full hover:bg-brand-primary/10"
+            >
               <Icons.Search className="w-5 h-5" />
             </button>
 
+            {/* Theme Toggle - Available to all */}
+            <ThemeToggle />
+
+            {/* Wishlist - Available to all */}
+            <Link to="/wishlist" className="relative p-2.5 text-stone-400 hover:text-brand-secondary transition-colors rounded-full hover:bg-brand-primary/10">
+              <Icons.Heart className="w-5 h-5" />
+              {wishlistItems.length > 0 && (
+                <span className="absolute -right-0.5 -top-0.5 bg-red-500 text-[10px] font-black text-white w-4 h-4 flex items-center justify-center rounded-full">
+                  {wishlistItems.length > 9 ? '9+' : wishlistItems.length}
+                </span>
+              )}
+            </Link>
+
+            {/* Cart - Available to all */}
             <Link 
               to="/cart" 
-              className={`relative p-2.5 transition-colors rounded-full hover:bg-brand-primary/10 ${itemCount > 0 ? 'text-brand-secondary' : 'text-stone-400 hover:text-brand-secondary'}`}
+              className={`relative p-2.5 transition-colors rounded-full hover:bg-brand-primary/10 ${itemCount > 0 ? 'text-brand-secondary' : 'text-stone-400 hover:text-brand-secondary'} ${cartBounce ? 'cart-icon-bounce' : ''}`}
             >
               <Icons.ShoppingCart className="w-5 h-5" />
               {itemCount > 0 && (
@@ -95,17 +121,18 @@ export function Navbar() {
 
             <div className="h-6 w-[1px] bg-white/10 hidden sm:block" />
 
+            {/* User Section */}
             {user ? (
-              <div className="hidden sm:flex items-center space-x-1">
-                <Link to="/profile" className={`flex items-center space-x-2 px-4 py-2 rounded-xl transition-all ${isActive('/profile') ? 'bg-brand-primary/20 text-brand-secondary border border-brand-primary/30' : 'text-stone-300 hover:bg-brand-primary/10'}`}>
-                  <div className="w-6 h-6 rounded-full bg-brand-primary/30 flex items-center justify-center border border-brand-secondary/30 text-[10px] font-bold text-brand-secondary">
+              <div className="hidden sm:flex items-center gap-1">
+                <Link to="/profile" className={`flex items-center space-x-2 px-3 py-2 rounded-xl transition-all ${isActive('/profile') ? 'bg-brand-primary/20 text-brand-secondary border border-brand-primary/30' : 'text-stone-300 hover:bg-brand-primary/10'}`}>
+                  <div className="w-7 h-7 rounded-full bg-brand-primary/30 flex items-center justify-center border border-brand-secondary/30 text-xs font-bold text-brand-secondary">
                     {user.firstName?.charAt(0).toUpperCase()}
                   </div>
-                  <span className="font-bold text-xs uppercase tracking-widest">{user.firstName}</span>
+                  <span className="font-bold text-xs uppercase tracking-widest hidden xl:block">{user.firstName}</span>
                 </Link>
                 <button 
                   onClick={handleLogout}
-                  className="p-2.5 text-stone-500 hover:text-status-error transition-colors cursor-pointer"
+                  className="p-2.5 text-stone-500 hover:text-red-400 transition-colors cursor-pointer rounded-full hover:bg-red-500/10"
                   title="Logout"
                 >
                   <Icons.LogOut className="w-5 h-5" />
@@ -114,7 +141,7 @@ export function Navbar() {
             ) : (
               <Link
                 to="/login"
-                className="!hidden lg:!flex btn px-6 py-2.5 text-[10px] bg-brand-primary/20 hover:bg-brand-primary/30 text-white border border-brand-primary/30 hover:border-brand-secondary/50 rounded-xl transition-all hover:shadow-[0_0_15px_rgba(124,58,237,0.3)]"
+                className="hidden lg:flex btn px-5 py-2.5 text-xs font-bold uppercase tracking-wider bg-brand-primary hover:bg-brand-secondary text-white rounded-xl transition-all hover:shadow-[0_0_15px_rgba(124,58,237,0.3)]"
               >
                 Sign In
               </Link>
@@ -133,6 +160,11 @@ export function Navbar() {
       <MobileNav 
         isOpen={isMobileNavOpen} 
         onClose={() => setIsMobileNavOpen(false)} 
+      />
+      
+      <SearchAutocomplete 
+        isOpen={isSearchOpen} 
+        onClose={() => setIsSearchOpen(false)} 
       />
     </>
   );

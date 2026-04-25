@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { Icons } from '../components/Icons';
 import '../styles/pages/ProductDetailPage.css';
@@ -14,11 +15,15 @@ export function ProductDetailPage() {
   const [activeImage, setActiveImage] = useState(0);
   const [quantity, setQuantity] = useState(1);
   const [isAdding, setIsAdding] = useState(false);
+  const [isZoomed, setIsZoomed] = useState(false);
+  const [zoomPosition, setZoomPosition] = useState({ x: 50, y: 50 });
+  const [isLoading, setIsLoading] = useState(true);
+  const imageRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    setIsLoading(true);
     const found = mockProducts.find(p => p.slug === slug);
     if (!found) {
-      // Could redirect to 404
       navigate('/products');
       return;
     }
@@ -26,9 +31,20 @@ export function ProductDetailPage() {
     setActiveImage(0);
     setQuantity(1);
     window.scrollTo(0, 0);
+    // Simulate loading delay for skeleton demo
+    const timer = setTimeout(() => setIsLoading(false), 500);
+    return () => clearTimeout(timer);
   }, [slug, navigate]);
 
   if (!product) return null;
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!imageRef.current || !isZoomed) return;
+    const rect = imageRef.current.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width) * 100;
+    const y = ((e.clientY - rect.top) / rect.height) * 100;
+    setZoomPosition({ x, y });
+  };
 
   const handleAddToCart = () => {
     setIsAdding(true);
@@ -63,17 +79,34 @@ export function ProductDetailPage() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 xl:gap-20">
         {/* Left: Image Gallery */}
         <div className="space-y-4">
-          <div className="bg-white/5 rounded-3xl aspect-square flex items-center justify-center p-8 lg:p-12 border border-white/5 relative group overflow-hidden">
-            <img 
-              src={product.images[activeImage]} 
-              alt={product.name} 
-              className="max-w-full max-h-full object-contain transition-transform duration-500 group-hover:scale-105 drop-shadow-2xl"
-            />
+          <div 
+            ref={imageRef}
+            className="bg-white/5 rounded-3xl aspect-square flex items-center justify-center p-8 lg:p-12 border border-white/5 relative group overflow-hidden cursor-zoom-in"
+            onClick={() => setIsZoomed(!isZoomed)}
+            onMouseMove={handleMouseMove}
+            onMouseLeave={() => setIsZoomed(false)}
+          >
+            {isLoading ? (
+              <div className="skeleton w-full h-full rounded-2xl" />
+            ) : (
+              <img 
+                src={product.images[activeImage]} 
+                alt={product.name} 
+                className="max-w-full max-h-full object-contain transition-transform duration-500 drop-shadow-2xl"
+                style={{
+                  transform: isZoomed ? `scale(2)` : 'scale(1)',
+                  transformOrigin: `${zoomPosition.x}% ${zoomPosition.y}%`,
+                }}
+              />
+            )}
             {product.isNew && (
               <span className="absolute top-6 left-6 bg-brand-primary text-white text-[10px] font-bold px-3 py-1 rounded-sm uppercase tracking-wider shadow-lg">
                 New
               </span>
             )}
+            <div className="absolute bottom-4 right-4 bg-black/60 px-3 py-1 rounded-full text-xs text-white/80">
+              Click to {isZoomed ? 'zoom out' : 'zoom'}
+            </div>
           </div>
           
           {product.images.length > 1 && (

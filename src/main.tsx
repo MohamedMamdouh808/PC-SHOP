@@ -3,6 +3,10 @@ import { createRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import { CartProvider } from './context/CartContext';
+import { ThemeProvider } from './context/ThemeContext';
+import { WishlistProvider } from './context/WishlistContext';
+import { CompareProvider } from './context/CompareContext';
+import { PromoProvider } from './context/PromoContext';
 import App from './App';
 import './index.css';
 
@@ -24,11 +28,19 @@ enableMocking().then(() => {
   root.render(
     <React.StrictMode>
       <BrowserRouter>
-        <AuthProvider>
-          <CartProvider>
-            <App />
-          </CartProvider>
-        </AuthProvider>
+        <ThemeProvider>
+          <AuthProvider>
+            <CartProvider>
+              <WishlistProvider>
+                <CompareProvider>
+                  <PromoProvider>
+                    <App />
+                  </PromoProvider>
+                </CompareProvider>
+              </WishlistProvider>
+            </CartProvider>
+          </AuthProvider>
+        </ThemeProvider>
       </BrowserRouter>
     </React.StrictMode>
   );

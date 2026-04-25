@@ -2,13 +2,17 @@
 import {
   Mail, Lock, User as UserIcon, Loader2, ArrowRight, CheckCircle2,
   Filter, ChevronDown, Check, X, Search,
-  ShoppingCart, Star, Box, Cpu, HardDrive, ChevronRight,
+  ShoppingCart, ShoppingBag, Star, Box, Cpu, HardDrive, ChevronRight,
   Zap, ShieldCheck, Gauge, MapPin, CreditCard, Trash2,
-  Menu, LogOut,
+  Menu, LogOut, Home,
   Facebook, Twitter, Instagram, Youtube,
   Package, Calendar, Truck,
   Eye, EyeOff,
-  Plus
+  Plus,
+  Sun,
+  Moon,
+  Heart,
+  Edit
 } from 'lucide-react';
 
 export const Icons = {
@@ -24,6 +28,7 @@ export const Icons = {
   X, 
   Search,
   ShoppingCart, 
+  ShoppingBag,
   Star, 
   Box, 
   Cpu, 
@@ -37,6 +42,7 @@ export const Icons = {
   Trash2,
   Menu, 
   LogOut,
+  Home,
   Facebook, 
   Twitter, 
   Instagram, 
@@ -46,5 +52,9 @@ export const Icons = {
   Truck,
   Eye,
   EyeOff,
-  Plus
+  Plus,
+  Sun,
+  Moon,
+  Heart,
+  Edit
 };

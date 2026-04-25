@@ -1,7 +1,9 @@
 import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
+import { Toaster } from 'sonner';
 import { Navbar } from './components/Navbar';
 import { ScrollToTop } from './components/ScrollToTop';
+import { CompareBar } from './components/CompareBar';
 import { HomePage } from './pages/HomePage';
 import { LoginPage } from './pages/LoginPage';
 import { RegisterPage } from './pages/RegisterPage';
@@ -13,6 +15,9 @@ import { CheckoutPage } from './pages/CheckoutPage';
 import { ProfilePage } from './pages/ProfilePage';
 import { OrdersPage } from './pages/OrdersPage';
 import { OrderDetailPage } from './pages/OrderDetailPage';
+import { NotFoundPage } from './pages/NotFoundPage';
+import { WishlistPage } from './pages/WishlistPage';
+import { ComparePage } from './pages/ComparePage';
 import { useAuth } from './context/AuthContext';
 import { Footer } from './components/Footer';
 
@@ -51,6 +56,12 @@ export default function App() {
           <Route path="/pc-builder" element={<PCBuilderPage />} />
           <Route path="/cart" element={<CartPage />} />
           
+          {/* Wishlist Route */}
+          <Route path="/wishlist" element={<WishlistPage />} />
+          
+          {/* Compare Route */}
+          <Route path="/compare" element={<ComparePage />} />
+          
           {/* Protected Routes */}
           <Route 
             path="/checkout" 
@@ -86,10 +97,21 @@ export default function App() {
           />
 
           {/* 404 */}
-          <Route path="*" element={<Navigate to="/" replace />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </main>
       <Footer />
+      <CompareBar />
+      <Toaster 
+        position="top-right"
+        toastOptions={{
+          style: {
+            background: '#1a1a2e',
+            color: '#fff',
+            border: '1px solid rgba(139, 92, 246, 0.3)',
+          },
+        }}
+      />
     </div>
   );
 }
