@@ -4,7 +4,7 @@ const mockUsers: any[] = [
   // Pre-create a test user so login works immediately
   {
     id: 'user_123456',
-    email: 'mohamedmamdouh56789@gmail.com',
+    email: 'admin1@gmail.com',
     password: 'Mohamed12@#',
     firstName: 'mohamed',
     lastName: 'mamdouh',
