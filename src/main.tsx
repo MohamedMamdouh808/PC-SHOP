@@ -6,15 +6,13 @@ import { CartProvider } from './context/CartContext';
 import App from './App';
 import './index.css';
 
-// Start MSW worker for mock API
+// Start MSW worker for mock API (runs in all environments for demo)
 async function enableMocking() {
-  if (import.meta.env.DEV) {
-    const { worker } = await import('./mocks/browser');
-    await worker.start({ 
-      onUnhandledRequest: 'warn',
-    });
-    console.log('[MSW] Mock API enabled');
-  }
+  const { worker } = await import('./mocks/browser');
+  await worker.start({ 
+    onUnhandledRequest: 'bypass',
+  });
+  console.log('[MSW] Mock API enabled');
 }
 
 const container = document.getElementById('root');
