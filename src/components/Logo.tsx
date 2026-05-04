@@ -34,7 +34,7 @@ export function Logo({ size = 'md', showText = true, className = '' }: LogoProps
     <Link to="/" className={`flex items-center ${gap} group ${className}`}>
       <div className="relative">
         <div className="absolute inset-0 bg-brand-primary/30 blur-lg rounded-full group-hover:bg-brand-primary/50 transition-all duration-500 animate-pulse" />
-        <div className={`relative bg-brand-primary ${icon} rounded-xl border border-brand-secondary/30 transition-all duration-500 group-hover:rotate-[360deg] group-hover:border-brand-secondary/50 group-hover:shadow-[0_0_20px_rgba(124,58,237,0.4)]`}>
+        <div className={`relative bg-brand-primary ${icon} rounded-xl border border-brand-secondary/30 transition-all duration-500 group-hover:rotate-[360deg] group-hover:border-brand-secondary/50 group-hover:shadow-[0_0_20px_rgba(212,175,55,0.4)]`}>
           <Icons.Cpu className="text-white" size={iconSize} />
         </div>
       </div>

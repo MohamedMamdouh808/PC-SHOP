@@ -1,22 +1,22 @@
-@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;400;500;600;700&family=Russo+One&display=swap');
+/* Google fonts are loaded in index.html */
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --color-brand-primary: #7C3AED;
-  --color-brand-secondary: #A78BFA;
-  --color-brand-dark: #1C1917;
-  --color-accent: #CA8A04;
-  --color-cta: #F43F5E;
-  --color-surface-base: #0C0A09;
-  --color-surface-elevated: #1C1917;
-  --color-surface-glass: rgba(124, 58, 237, 0.08);
-  --color-surface-glass-dark: rgba(12, 10, 9, 0.8);
+  --color-brand-primary: #D4AF37;
+  --color-brand-secondary: #FDE047;
+  --color-brand-dark: #000000;
+  --color-accent: #D4AF37;
+  --color-cta: #FFFFFF;
+  --color-surface-base: #050505;
+  --color-surface-elevated: #121212;
+  --color-surface-glass: rgba(255, 255, 255, 0.03);
+  --color-surface-glass-dark: rgba(5, 5, 5, 0.85);
   
-  --font-sans: 'Chakra Petch', system-ui, sans-serif;
-  --font-heading: 'Russo One', system-ui, sans-serif;
+  --font-sans: 'DM Sans', system-ui, sans-serif;
+  --font-heading: 'Space Grotesk', system-ui, sans-serif;
 
   --shadow-sm: 0 1px 2px rgba(0,0,0,0.1);
   --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.2), 0 2px 4px -1px rgba(0,0,0,0.1);
@@ -48,6 +48,7 @@
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
   }
 
   .glass-dark {
@@ -55,45 +56,46 @@
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     border: 1px solid rgba(255, 255, 255, 0.03);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
   }
 
   .text-gradient-gold {
-    background: linear-gradient(135deg, #CA8A04 0%, #EAB308 50%, #CA8A04 100%);
+    background: linear-gradient(135deg, #D4AF37 0%, #FDE047 50%, #D4AF37 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
   .text-gradient-neon {
-    background: linear-gradient(135deg, #7C3AED 0%, #A78BFA 50%, #F43F5E 100%);
+    background: linear-gradient(135deg, #FFFFFF 0%, #D4AF37 50%, #FFFFFF 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
   .text-gradient {
-    background: linear-gradient(135deg, #7C3AED 0%, #A78BFA 100%);
+    background: linear-gradient(135deg, #FFFFFF 0%, #D4AF37 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
-  .glow-purple {
-    box-shadow: 0 0 30px rgba(124, 58, 237, 0.3);
+  .glow-brand {
+    box-shadow: 0 0 30px rgba(212, 175, 55, 0.15);
   }
 
   .glow-accent {
-    box-shadow: 0 0 30px rgba(202, 138, 4, 0.3);
+    box-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
   }
 
   .btn-cta {
-    background: linear-gradient(135deg, #F43F5E 0%, #FB7185 100%);
-    color: white;
-    box-shadow: 0 4px 14px 0 rgba(244, 63, 94, 0.39);
+    background: #FFFFFF;
+    color: #000000;
+    box-shadow: 0 4px 14px 0 rgba(255, 255, 255, 0.2);
   }
   .btn-cta:hover {
-    background: linear-gradient(135deg, #FB7185 0%, #F43F5E 100%);
-    box-shadow: 0 6px 20px rgba(244, 63, 94, 0.5);
+    background: #E5E5E5;
+    box-shadow: 0 6px 20px rgba(255, 255, 255, 0.3);
     transform: translateY(-2px);
   }
 
@@ -103,7 +105,7 @@
   .hover-card:hover {
     transform: translateY(-8px);
     box-shadow: var(--shadow-xl);
-    border-color: rgba(202, 138, 4, 0.3);
+    border-color: rgba(212, 175, 55, 0.4);
   }
 
   .btn {
@@ -128,12 +130,12 @@
 
   .btn-primary {
     background: var(--color-brand-primary);
-    color: white;
-    box-shadow: 0 4px 14px 0 rgba(124, 58, 237, 0.39);
+    color: #000000;
+    box-shadow: 0 4px 14px 0 rgba(212, 175, 55, 0.3);
   }
   .btn-primary:hover {
     background: var(--color-brand-secondary);
-    box-shadow: 0 6px 20px rgba(124, 58, 237, 0.5);
+    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5);
     transform: translateY(-2px);
   }
 
@@ -148,8 +150,8 @@
     transition: all 0.3s ease;
   }
   .input-field:focus {
-    border-color: var(--color-accent);
-    box-shadow: 0 0 0 4px rgba(202, 138, 4, 0.1);
+    border-color: var(--color-brand-primary);
+    box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.1);
   }
 }
 
@@ -213,12 +215,15 @@
 }
 
 .skeleton {
-  background: linear-gradient(90deg, #1a1a2e 25%, #252542 50%, #1a1a2e 75%);
+  background: linear-gradient(90deg, #111111 25%, #1e1e1e 50%, #111111 75%);
   background-size: 200% 100%;
   animation: shimmer 1.5s infinite;
 }
 
 /* Toast Custom Styles */
 [data-sonner-toast] {
-  font-family: 'Inter', sans-serif !important;
+  font-family: 'DM Sans', 'Space Grotesk', sans-serif !important;
+  background: #121212 !important;
+  border: 1px solid rgba(255,255,255,0.06) !important;
+  color: white !important;
 }

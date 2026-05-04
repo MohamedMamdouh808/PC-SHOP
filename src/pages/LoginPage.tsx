@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
 import { Icons } from '../components/Icons';
-import '../styles/pages/LoginPage.css';
 import { useAuth } from '../context/AuthContext';
 import { api } from '../lib/api';
 import { loginSchema } from '../shared/src/schemas';

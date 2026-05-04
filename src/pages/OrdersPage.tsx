@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { Icons } from '../components/Icons';
 import { mockOrders } from '../lib/mockData';
-import '../styles/pages/OrdersPage.css';
 
 export function OrdersPage() {
   const { user } = useAuth();

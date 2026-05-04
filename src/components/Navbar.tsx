@@ -115,7 +115,7 @@ export function Navbar() {
             <Link to="/wishlist" className="relative p-2 md:p-2.5 text-stone-400 hover:text-brand-secondary transition-colors rounded-full hover:bg-brand-primary/10">
               <Icons.Heart className="w-5 h-5" />
               {wishlistItems.length > 0 && (
-                <span className="absolute -right-0.5 -top-0.5 bg-red-500 text-[10px] font-black text-white w-4 h-4 flex items-center justify-center rounded-full">
+                <span className="absolute -right-0.5 -top-0.5 bg-cta text-[10px] font-black text-black w-4 h-4 flex items-center justify-center rounded-full shadow-lg">
                   {wishlistItems.length > 9 ? '9+' : wishlistItems.length}
                 </span>
               )}
@@ -128,7 +128,7 @@ export function Navbar() {
             >
               <Icons.ShoppingCart className="w-5 h-5" />
               {itemCount > 0 && (
-                <span className="absolute -right-0.5 -top-0.5 bg-brand-primary text-[10px] font-black text-white w-5 h-5 flex items-center justify-center rounded-full border-2 border-stone-900 shadow-xl shadow-brand-primary/30 animate-pulse">
+                <span className="absolute -right-0.5 -top-0.5 bg-brand-primary text-[10px] font-black text-black w-5 h-5 flex items-center justify-center rounded-full border-2 border-surface-base shadow-xl shadow-brand-primary/30 animate-pulse">
                   {itemCount > 99 ? '99+' : itemCount}
                 </span>
               )}
@@ -156,7 +156,7 @@ export function Navbar() {
             ) : (
               <Link
                 to="/login"
-                className="hidden md:flex lg:flex btn px-5 py-2.5 text-xs font-bold uppercase tracking-wider bg-brand-primary hover:bg-brand-secondary text-white rounded-xl transition-all hover:shadow-[0_0_15px_rgba(124,58,237,0.3)]"
+                className="!hidden md:!flex btn w-auto px-5 py-2.5 text-xs font-bold uppercase tracking-wider bg-brand-primary hover:bg-brand-secondary text-black rounded-xl transition-all hover:shadow-[0_0_15px_rgba(212,175,55,0.3)]"
               >
                 Sign In
               </Link>

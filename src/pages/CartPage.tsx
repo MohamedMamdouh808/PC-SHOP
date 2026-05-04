@@ -1,6 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
 import { Icons } from '../components/Icons';
-import '../styles/pages/CartPage.css';
 import { useCart } from "../context/CartContext";
 import { useAuth } from "../context/AuthContext";
 

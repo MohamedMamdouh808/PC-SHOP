@@ -8,17 +8,17 @@ export default {
     extend: {
       colors: {
         'brand': {
-          'primary': 'var(--color-brand-primary)', // Neon Purple - uses CSS variable
-          'secondary': 'var(--color-brand-secondary)', // Light Purple
-          'dark': 'var(--color-brand-dark)', // Deep Stone (kept for dark elements)
+          'primary': 'var(--color-brand-primary)', // Metallic Gold
+          'secondary': 'var(--color-brand-secondary)', // Bright Gold
+          'dark': 'var(--color-brand-dark)', // Deep Obsidian
         },
-        'accent': '#CA8A04', // Premium Gold
-        'cta': '#F43F5E', // Rose Red for action buttons
+        'accent': '#D4AF37', // Premium Gold
+        'cta': '#FFFFFF', // White for action buttons
         'surface': {
-          'base': '#0C0A09', // Almost Black
-          'elevated': '#1C1917', // Primary Stone
-          'glass': 'rgba(255, 255, 255, 0.05)',
-          'glass-dark': 'rgba(12, 10, 9, 0.8)',
+          'base': '#050505', // Almost Black
+          'elevated': '#121212', // Primary Stone
+          'glass': 'rgba(255, 255, 255, 0.03)',
+          'glass-dark': 'rgba(5, 5, 5, 0.85)',
         },
         'status': {
           'success': '#10B981',
@@ -28,8 +28,8 @@ export default {
         }
       },
       fontFamily: {
-        'sans': ['"Chakra Petch"', 'system-ui', 'sans-serif'],
-        'heading': ['"Russo One"', 'system-ui', 'sans-serif'],
+        'sans': ['"DM Sans"', 'system-ui', 'sans-serif'],
+        'heading': ['"Space Grotesk"', 'system-ui', 'sans-serif'],
       },
       animation: {
         'fade-in': 'fadeIn 0.3s ease-out',
@@ -56,10 +56,10 @@ export default {
         }
       },
       backgroundImage: {
-        'gold-gradient': 'linear-gradient(135deg, #CA8A04 0%, #EAB308 50%, #CA8A04 100%)',
-        'dark-gradient': 'linear-gradient(180deg, #1C1917 0%, #0C0A09 100%)',
-        'neon-gradient': 'linear-gradient(135deg, #7C3AED 0%, #A78BFA 50%, #7C3AED 100%)',
-        'hero-glow': 'radial-gradient(ellipse at center, rgba(124,58,237,0.15) 0%, transparent 70%)',
+        'gold-gradient': 'linear-gradient(135deg, #D4AF37 0%, #FDE047 50%, #D4AF37 100%)',
+        'dark-gradient': 'linear-gradient(180deg, #121212 0%, #050505 100%)',
+        'neon-gradient': 'linear-gradient(135deg, #FFFFFF 0%, #D4AF37 50%, #FFFFFF 100%)',
+        'hero-glow': 'radial-gradient(ellipse at center, rgba(212,175,55,0.15) 0%, transparent 70%)',
       }
     },
   },

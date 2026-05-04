@@ -1,7 +1,6 @@
 import { useState, useMemo } from "react";
 import { useSearchParams } from "react-router-dom";
 import { Icons } from '../components/Icons';
-import '../styles/pages/ProductsPage.css';
 import { ProductCard } from "../components/ProductCard";
 import { mockProducts, mockCategories, mockBrands } from "../lib/mockData";
 

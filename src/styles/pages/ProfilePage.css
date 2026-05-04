@@ -14,7 +14,7 @@
 }
 
 .profile-sidebar {
-  background-color: rgba(28, 25, 23, 0.5);
+  background-color: rgba(18, 18, 18, 0.6);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
   border-right: 1px solid rgba(255, 255, 255, 0.05);
@@ -37,8 +37,8 @@
 }
 
 .profile-menu-item.active {
-  color: #7C3AED;
-  background-color: rgba(124, 58, 237, 0.05);
+  color: var(--color-brand-primary);
+  background-color: rgba(212, 175, 55, 0.05);
 }
 
 .profile-menu-item.active::before {
@@ -47,11 +47,11 @@
   left: 0;
   top: 0;
   bottom: 0;
-  width: 4px;
-  background-color: #7C3AED;
+  width: 3px;
+  background-color: var(--color-brand-primary);
   border-top-right-radius: 9999px;
   border-bottom-right-radius: 9999px;
-  box-shadow: 0 0 15px rgba(124, 58, 237, 0.5);
+  box-shadow: 0 0 12px rgba(212, 175, 55, 0.4);
 }
 
 .form-label {
@@ -67,7 +67,7 @@
 .profile-avatar-glow {
   position: absolute;
   inset: 0;
-  background-color: rgba(124, 58, 237, 0.2);
+  background-color: rgba(212, 175, 55, 0.15);
   filter: blur(40px);
   border-radius: 9999px;
   opacity: 0;
@@ -88,8 +88,8 @@
 /* Custom Input Styling for Profile */
 .profile-input {
   width: 100%;
-  background-color: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 1rem;
   padding: 1rem 1.25rem;
   color: white;
@@ -98,8 +98,8 @@
 
 .profile-input:focus {
   outline: none;
-  box-shadow: 0 0 0 2px rgba(124, 58, 237, 0.3);
-  border-color: rgba(124, 58, 237, 0.5);
+  box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2);
+  border-color: rgba(212, 175, 55, 0.5);
 }
 
 .profile-input:disabled {
@@ -107,14 +107,4 @@
   cursor: not-allowed;
   background-color: transparent;
   border-style: dashed;
-}
-
-/* Animations */
-.animate-fade-in {
-  animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
 }

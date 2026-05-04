@@ -258,7 +258,7 @@ export function PCBuilderPage() {
                   }}
                   className={`w-full py-4 rounded-xl font-bold uppercase text-xs tracking-widest transition-all ${
                     hasAllRequired
-                      ? 'btn-primary hover:shadow-[0_0_20px_rgba(124,58,237,0.4)]'
+                      ? 'btn-primary hover:shadow-[0_0_20px_rgba(212,175,55,0.4)]'
                       : 'bg-white/5 text-white/30 cursor-not-allowed'
                   }`}
                 >

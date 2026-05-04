@@ -1,7 +1,6 @@
 import { useState, FormEvent } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { Icons } from '../components/Icons';
-import '../styles/pages/CheckoutPage.css';
 import { useCart } from "../context/CartContext";
 import { useAuth } from "../context/AuthContext";
 

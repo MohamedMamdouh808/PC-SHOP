@@ -2,7 +2,6 @@ import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { Icons } from '../components/Icons';
-import '../styles/pages/ProductDetailPage.css';
 import { mockProducts, Product } from "../lib/mockData";
 import { useCart } from "../context/CartContext";
 
@@ -215,7 +214,7 @@ export function ProductDetailPage() {
                 disabled={product.stock === 0}
                 className={`flex-1 h-[60px] font-bold text-lg rounded-xl flex items-center justify-center gap-3 transition-all duration-300 relative overflow-hidden group ${
                   product.stock > 0 
-                    ? "bg-brand-primary text-white hover:bg-brand-primary/90 shadow-[0_0_30px_rgba(124,58,237,0.3)] hover:shadow-[0_0_40px_rgba(124,58,237,0.5)] cursor-pointer" 
+                    ? "bg-brand-primary text-brand-dark hover:bg-brand-primary/90 shadow-[0_0_30px_rgba(212,175,55,0.3)] hover:shadow-[0_0_40px_rgba(212,175,55,0.5)] cursor-pointer" 
                     : "bg-surface-elevated text-slate-500 cursor-not-allowed"
                 }`}
               >
